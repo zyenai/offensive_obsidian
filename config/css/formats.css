@@ -1,0 +1,11 @@
+/*Line width and height customization
+*/
+/*default*/
+body {
+}
+
+/* cssclass: wide */
+body .wide{
+--line-height-normal: 1.25; /* change height to your wishes */
+--file-line-width: 3000px ; /* change width to your wishes */
+}
