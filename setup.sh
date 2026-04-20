@@ -115,6 +115,12 @@ install_obsidian() {
     info "Installing Obsidian..."
     $SUDO dpkg -i "$tmp" || $SUDO apt-get install -f -y
     rm -f "$tmp"
+
+    # libasound2 is an undeclared Electron dependency; package name varies by distro
+    $SUDO apt-get install -y libasound2t64 2>/dev/null \
+        || $SUDO apt-get install -y libasound2 2>/dev/null \
+        || warn "Could not install libasound2 — Obsidian may fail to start"
+
     success "Obsidian ${version} installed."
 }
 
