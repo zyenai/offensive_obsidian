@@ -94,12 +94,10 @@ install_obsidian() {
     fi
 
     info "Fetching latest Obsidian release info..."
-    local release_json
-    release_json="$(curl -fsSL --retry 3 --retry-delay 2 \
-        https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest)"
-
     local version
-    version="$(echo "$release_json" | grep '"tag_name"' | head -1 | cut -d'"' -f4)"
+    version="$(curl -fsI --retry 3 --retry-delay 2 \
+        https://github.com/obsidianmd/obsidian-releases/releases/latest \
+        | grep -i '^location:' | sed 's|.*/tag/||' | tr -d '[:space:]')"
     [[ -n "$version" ]] || die "Could not determine latest Obsidian version."
 
     local ver="${version#v}"
@@ -151,18 +149,17 @@ install_plugin() {
     fi
 
     info "Installing plugin: $plugin_id..."
-    local release_json
-    release_json="$(curl -fsSL --retry 3 --retry-delay 2 \
-        "https://api.github.com/repos/${github_repo}/releases/latest")" \
+    local version
+    version="$(curl -fsI --retry 3 --retry-delay 2 \
+        "https://github.com/${github_repo}/releases/latest" \
+        | grep -i '^location:' | sed 's|.*/tag/||' | tr -d '[:space:]')" \
         || die "Failed to fetch release info for $plugin_id"
+    [[ -n "$version" ]] || die "Could not determine latest version of $plugin_id"
 
+    local base_url="https://github.com/${github_repo}/releases/download/${version}"
     for asset in main.js manifest.json styles.css; do
-        local asset_url
-        asset_url="$(echo "$release_json" \
-            | grep -o '"browser_download_url": "[^"]*'"${asset}"'"' \
-            | head -1 \
-            | cut -d'"' -f4)"
-        if [[ -n "$asset_url" ]]; then
+        local asset_url="${base_url}/${asset}"
+        if curl -fsI --retry 3 --retry-delay 2 "$asset_url" &>/dev/null; then
             curl -fsSL --retry 3 --retry-delay 2 -o "$plugin_dir/$asset" "$asset_url" \
                 || die "Failed to download $asset for $plugin_id"
         fi
