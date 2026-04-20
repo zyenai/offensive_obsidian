@@ -287,7 +287,7 @@ print_summary() {
     echo "  Hotkeys:"
     echo "    Ctrl+Shift+A  — Insert activity log entry"
     echo "    Ctrl+Shift+O  — Insert outbrief template"
-    echo "    Ctrl+Shift+T  — Insert table of contents"
+    echo "    Ctrl+Shift+C  — Insert table of contents"
     echo ""
     echo "  Next step: Open Obsidian and select '$VAULT_PATH' as your vault."
     echo ""

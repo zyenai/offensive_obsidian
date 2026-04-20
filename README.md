@@ -41,13 +41,13 @@ After setup, open Obsidian and select the vault folder.
 |--------|--------|
 | `Ctrl+Shift+A` | Insert activity log entry |
 | `Ctrl+Shift+O` | Insert outbrief template |
-| `Ctrl+Shift+T` | Insert table of contents |
+| `Ctrl+Shift+C` | Insert table of contents |
 
 # Usage
 
 - Press `Ctrl+Shift+A` to insert an activity log entry.
 - Press `Ctrl+Shift+O` to insert an outbrief template.
-- Press `Ctrl+Shift+T` to insert a table of contents.
+- Press `Ctrl+Shift+C` to insert a table of contents.
 
 ---
 
