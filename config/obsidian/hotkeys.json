@@ -1,5 +1,11 @@
 {
   "automatic-table-of-contents:insert-table-of-contents": [
     {"modifiers": ["Mod","Shift"], "key": "C"}
+  ],
+  "templater-obsidian:templates/pentest-activity-log": [
+    {"modifiers": ["Mod","Shift"], "key": "A"}
+  ],
+  "templater-obsidian:templates/pentest-outbrief": [
+    {"modifiers": ["Mod","Shift"], "key": "O"}
   ]
 }

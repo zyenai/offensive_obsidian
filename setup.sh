@@ -169,6 +169,8 @@ install_plugin() {
                 || die "Failed to download $asset for $plugin_id"
         fi
     done
+    [[ -f "$plugin_dir/main.js" ]] \
+        || die "Plugin $plugin_id: main.js missing from release assets — check https://github.com/${github_repo}/releases"
     success "Plugin $plugin_id installed."
 }
 
@@ -201,6 +203,10 @@ copy_static_configs() {
 
     if [[ ! -f "$obsidian_dir/app.json" ]] || [[ "$FORCE" == true ]]; then
         copy_or_download "config/obsidian/app.json" "$obsidian_dir/app.json"
+    fi
+
+    if [[ ! -f "$obsidian_dir/templates.json" ]] || [[ "$FORCE" == true ]]; then
+        copy_or_download "config/obsidian/templates.json" "$obsidian_dir/templates.json"
     fi
 }
 
@@ -246,22 +252,15 @@ write_templater_data_json() {
 
     cat > "$dest" <<EOF
 {
-  "command_timeout": 5,
-  "enable_folder_templates": true,
-  "enabled_templates_hotkeys": [
-    {
-      "hotkey": {"modifiers": ["Mod","Shift"], "key": "A"},
-      "template_file": "templates/pentest-activity-log.md"
-    },
-    {
-      "hotkey": {"modifiers": ["Mod","Shift"], "key": "O"},
-      "template_file": "templates/pentest-outbrief.md"
-    }
-  ],
-  "folder_templates": [],
+  "templates_folder": "templates",
   "syntax_highlighting": true,
-  "template_folder": "templates",
-  "trigger_on_file_creation": false
+  "trigger_on_file_creation": false,
+  "enable_folder_templates": true,
+  "folder_templates": [],
+  "enabled_templates_hotkeys": [
+    "templates/pentest-activity-log.md",
+    "templates/pentest-outbrief.md"
+  ]
 }
 EOF
 }
