@@ -215,7 +215,7 @@ copy_static_configs() {
 # ---------------------------------------------------------------------------
 merge_community_plugins() {
     local dest="$VAULT_PATH/.obsidian/community-plugins.json"
-    local required=("templater-obsidian" "obsidian-automatic-table-of-contents")
+    local required=("templater-obsidian" "automatic-table-of-contents")
 
     if [[ ! -f "$dest" ]]; then
         copy_or_download "config/obsidian/community-plugins.json" "$dest"
