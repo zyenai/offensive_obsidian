@@ -135,7 +135,8 @@ create_vault_structure() {
         "$VAULT_PATH/.obsidian/plugins/templater-obsidian" \
         "$VAULT_PATH/.obsidian/plugins/obsidian-automatic-table-of-contents" \
         "$VAULT_PATH/.obsidian/snippets" \
-        "$VAULT_PATH/templates"
+        "$VAULT_PATH/templates" \
+        "$VAULT_PATH/engagements" \
 
     info "Vault structure created at $VAULT_PATH"
 }

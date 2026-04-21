@@ -1,13 +1,8 @@
 # offensive_obsidian
-Quick start guide for setting up Obsidian for pentest note taking
 
-# Background
-
-...
+Quick script to configure Obsidian for pentest note taking
 
 # Quick Start
-
-Install and configure everything with a single command:
 
 ```bash
 # Clone and run
@@ -17,13 +12,13 @@ cd offensive_obsidian
 ```
 
 ```bash
-# Or run directly without cloning
-bash <(curl -fsSL https://raw.githubusercontent.com/zyenai/offensive_obsidian/main/setup.sh)
+# Custom vault location
+./setup.sh --vault ~/pentest/notes
 ```
 
 ```bash
-# Custom vault location
-./setup.sh --vault ~/pentest/notes
+# Reinstall
+./setup.sh --force
 ```
 
 The script will:
@@ -33,7 +28,7 @@ The script will:
 - Copy templates and CSS snippets into the vault
 - Configure hotkeys automatically
 
-After setup, open Obsidian and select the vault folder.
+After setup, open Obsidian and select the vault folder (`~/obsidian-vault` or your specified path).
 
 # Hotkeys
 
@@ -43,11 +38,6 @@ After setup, open Obsidian and select the vault folder.
 | `Ctrl+Shift+O` | Insert outbrief template |
 | `Ctrl+Shift+C` | Insert table of contents |
 
-# Usage
-
-- Press `Ctrl+Shift+A` to insert an activity log entry.
-- Press `Ctrl+Shift+O` to insert an outbrief template.
-- Press `Ctrl+Shift+C` to insert a table of contents.
 
 ---
 
